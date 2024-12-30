@@ -15,5 +15,5 @@ func WASMLibLocation() string {
 	if err != nil {
 		return ""
 	}
-	return usr.HomeDir + "/dharitrione-vm-binaries/" + libName
+	return usr.HomeDir + "/terradharitri-vm-binaries/" + libName
 }
