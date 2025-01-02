@@ -132,6 +132,24 @@ const BuiltInFunctionUnGuardAccount = "UnGuardAccount"
 // BuiltInFunctionMigrateDataTrie is the built-in function key for migrating the data trie
 const BuiltInFunctionMigrateDataTrie = "MigrateDataTrie"
 
+// DCDTSetTokenType represents the builtin function name to set token type
+const DCDTSetTokenType = "DCDTSetTokenType"
+
+// DCDTModifyRoyalties represents the builtin function name to modify royalties
+const DCDTModifyRoyalties = "DCDTModifyRoyalties"
+
+// DCDTSetNewURIs represents the builtin function name to set new URIs for NFTs
+const DCDTSetNewURIs = "DCDTSetNewURIs"
+
+// DCDTModifyCreator represents the builtin function name to modify creator for NFTs
+const DCDTModifyCreator = "DCDTModifyCreator"
+
+// DCDTMetaDataRecreate represents the builtin function name to recreate the metadata for DCDT tokens
+const DCDTMetaDataRecreate = "DCDTMetaDataRecreate"
+
+// DCDTMetaDataUpdate represents the builtin function name to update the metadata for DCDT tokens
+const DCDTMetaDataUpdate = "DCDTMetaDataUpdate"
+
 // DCDTRoleLocalMint is the constant string for the local role of mint for DCDT tokens
 const DCDTRoleLocalMint = "DCDTRoleLocalMint"
 
@@ -159,6 +177,21 @@ const DCDTRoleNFTUpdateAttributes = "DCDTRoleNFTUpdateAttributes"
 // DCDTRoleTransfer is the constant string for the local role to transfer DCDT, only for special tokens
 const DCDTRoleTransfer = "DCDTTransferRole"
 
+// DCDTRoleSetNewURI represents the role which can rewrite the URI in the token metadata
+const DCDTRoleSetNewURI = "DCDTRoleSetNewURI"
+
+// DCDTRoleModifyRoyalties represents the role which can rewrite the royalties of a token
+const DCDTRoleModifyRoyalties = "DCDTRoleModifyRoyalties"
+
+// DCDTRoleModifyCreator represents the role which can rewrite the creator in the token metadata
+const DCDTRoleModifyCreator = "DCDTRoleModifyCreator"
+
+// DCDTRoleNFTRecreate represents the role which can recreate the token metadata
+const DCDTRoleNFTRecreate = "DCDTRoleNFTRecreate"
+
+// DCDTRoleNFTUpdate represents the role which can update the token metadata
+const DCDTRoleNFTUpdate = "DCDTRoleNFTUpdate"
+
 // DCDTType defines the possible types in case of DCDT tokens
 type DCDTType uint32
 
@@ -167,7 +200,43 @@ const (
 	Fungible DCDTType = iota
 	// NonFungible defines the token type for DCDT non fungible tokens
 	NonFungible
+	// NonFungibleV2 defines the token type for DCDT non fungible tokens
+	NonFungibleV2
+	// SemiFungible defines the token type for DCDT semi fungible tokens
+	SemiFungible
+	// MetaFungible defines the token type for DCDT meta fungible tokens
+	MetaFungible
+	// DynamicNFT defines the token type for DCDT dynamic NFT tokens
+	DynamicNFT
+	// DynamicSFT defines the token type for DCDT dynamic SFT tokens
+	DynamicSFT
+	// DynamicMeta defines the token type for DCDT dynamic meta tokens
+	DynamicMeta
 )
+
+// String will convert number type in string
+func (t DCDTType) String() string {
+	switch t {
+	case Fungible:
+		return FungibleDCDT
+	case NonFungible:
+		return NonFungibleDCDT
+	case NonFungibleV2:
+		return NonFungibleDCDTv2
+	case SemiFungible:
+		return SemiFungibleDCDT
+	case MetaFungible:
+		return MetaDCDT
+	case DynamicNFT:
+		return DynamicNFTDCDT
+	case DynamicSFT:
+		return DynamicSFTDCDT
+	case DynamicMeta:
+		return DynamicMetaDCDT
+	default:
+		return "Unknown"
+	}
+}
 
 // FungibleDCDT defines the string for the token type of fungible DCDT
 const FungibleDCDT = "FungibleDCDT"
@@ -175,8 +244,26 @@ const FungibleDCDT = "FungibleDCDT"
 // NonFungibleDCDT defines the string for the token type of non fungible DCDT
 const NonFungibleDCDT = "NonFungibleDCDT"
 
+// NonFungibleDCDTv2 defines the string for the token type of non fungible DCDT
+const NonFungibleDCDTv2 = "NonFungibleDCDTv2"
+
+// MetaDCDT defines the string for the token type of meta DCDT
+const MetaDCDT = "MetaDCDT"
+
 // SemiFungibleDCDT defines the string for the token type of semi fungible DCDT
 const SemiFungibleDCDT = "SemiFungibleDCDT"
+
+// Dynamic is the prefix used for dynamic DCDT tokens
+const Dynamic = "Dynamic"
+
+// DynamicNFTDCDT defines the string for the token type of dynamic NFT DCDT
+const DynamicNFTDCDT = Dynamic + NonFungibleDCDT
+
+// DynamicSFTDCDT defines the string for the token type of dynamic SFT DCDT
+const DynamicSFTDCDT = Dynamic + SemiFungibleDCDT
+
+// DynamicMetaDCDT defines the string for the token type of dynamic meta DCDT
+const DynamicMetaDCDT = Dynamic + MetaDCDT
 
 // MaxRoyalty defines 100% as uint32
 const MaxRoyalty = uint32(10000)
@@ -191,7 +278,7 @@ const RelayedTransactionV2 = "relayedTxV2"
 const SCDeployInitFunctionName = "_init"
 
 // ProtectedKeyPrefix is the key prefix which is protected from writing in the trie - only for special builtin functions
-const ProtectedKeyPrefix = "N" + "U" + "M" + "B" + "A" + "T"
+const ProtectedKeyPrefix = "E" + "L" + "R" + "O" + "N" + "D"
 
 // DelegationSystemSCKey is the key under which there is data in case of system delegation smart contracts
 const DelegationSystemSCKey = "delegation"
@@ -267,7 +354,7 @@ const GasRefundForRelayerMessage = "gas refund for relayer"
 // InitialVersionOfTransaction defines the initial version for a transaction
 const InitialVersionOfTransaction = uint32(1)
 
-// DefaultAddressPrefix is the default hrp of TerraDharitri/Numbat
+// DefaultAddressPrefix is the default hrp of Dharitri/Numbat
 const DefaultAddressPrefix = "moa"
 
 // TopicRequestSuffix represents the topic name suffix for requests
